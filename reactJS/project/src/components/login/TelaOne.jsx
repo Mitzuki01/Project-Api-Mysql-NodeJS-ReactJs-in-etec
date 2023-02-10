@@ -1,6 +1,7 @@
 import React from "react";
 import Style from './Style.css'
 import movie from './img/movie.png'
+import { Link } from "react-router-dom";
 
 function Login(){
     return(
@@ -17,9 +18,12 @@ function Login(){
              <button>
                 Login
               </button>
-              <button>
-                Cadastrar
-              </button>
+                <Link to='cadastro'>
+                  <button>
+                      Cadastrar
+                  </button>
+                </Link>
+              
              </div>
            </div>
 

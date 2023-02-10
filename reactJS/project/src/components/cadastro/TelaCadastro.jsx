@@ -1,7 +1,24 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import {toast} from 'react-toastify'
 import Style from "./Style.css"
 
 function Cadastro(){
+
+    function handleLogin(e){
+        e.preventDefault();
+        toast.success('🦄 pego!!', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            });
+    }
+
     return(
 
  <div className="background">
@@ -23,8 +40,20 @@ function Cadastro(){
     </div>
 
     <div >
-         <input type="submit" name="subject" value="REGISTRATION" class="button"/>
+         <input type="submit" name="subject" value="REGISTRATION" class="button"/ > 
     </div> 
+
+    <div >
+    <Link to='login'>
+        <input type="submit" name="subject" value="LOGIN" class="button"/>
+    </Link>
+    </div>
+
+    <button variant="primary" type="submit"
+        onClick={handleLogin}
+    >
+       <h1>teste</h1>
+    </button>
 
 
    
