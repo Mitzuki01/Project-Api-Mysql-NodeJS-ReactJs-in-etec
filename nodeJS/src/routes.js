@@ -1,9 +1,9 @@
-import { Express } from "express";
+import express from "express";
 
-import user from './controllers/useControllers.js';
+import user from './controllers/userController.js'
 
-const route  = Express();
+const route = express();
 
-route.use('/user',user);
+route.use('/user', user);
 
 export default route;

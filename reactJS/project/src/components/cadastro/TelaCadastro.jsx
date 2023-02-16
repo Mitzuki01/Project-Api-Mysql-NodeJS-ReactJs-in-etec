@@ -1,10 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import {toast} from 'react-toastify'
-import Style from "./Style.css"
+import Style from "./Style.css";
+import { useState } from 'react';
+import api from '../../api';
+import { set } from "lodash";
+
+
+
+
 
 function Cadastro(){
-
+    
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [UserName, setUserName] = useState('');
+    
     function handleLogin(e){
         e.preventDefault();
         toast.success('🦄 pego!!', {
@@ -19,6 +30,26 @@ function Cadastro(){
             });
     }
 
+async function hadlerRegister(event){
+    event.preventDefault();
+    try{
+        const data = {
+            email, password, UserName
+        };
+        const response = await api.post('/user', data);
+
+        alert(`Usuário cadastrado, bem vindo ${UserName}`);
+
+        setEmail('');
+        setPassword('');
+        setUserName('');
+    }   catch(error){
+        alert(`Erro no cadastro`)
+    }
+
+
+}
+
     return(
 
  <div className="background">
@@ -26,26 +57,38 @@ function Cadastro(){
 <form>
     
     <div>
-        <input type="text" name="nome" placeholder="Your name..." class="text_area"/>
+        <input type="text"placeholder="Your name..."
+         class="text_area" value={UserName}
+         onChange={e => setUserName(e.target.value)}
+        required
+         />
     </div>
     <div>
-        <input type="email" name="email" placeholder="Your email..." class="text_area"/>
+        <input type="email"
+         placeholder="Your email..." class="text_area"
+        value={email}
+        onChange={e => setEmail(e.target.value)}
+        required/>
     </div>
-    
     <div>
-        <input type="password" name="senha" placeholder="password..." class="text_area" id="senha"/>
+        <input type="password" name="senha"
+         placeholder="password..." class="text_area" id="senha"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+        required/>
     </div>
-    <div>
-        <input type="password" name="confirma_senha" placeholder="confirm your password..." class="text_area" id="senha"/>
-    </div>
-
+    {/*<div>
+        <input type="password" name="confirma_senha"
+         placeholder="confirm your password..." class="text_area" id="senha"/>
+    </div>*/}
     <div >
-         <input type="submit" name="subject" value="REGISTRATION" class="button"/ > 
+         <input type="submit" name="subject"
+          value="REGISTRATION" class="button"/ > 
     </div> 
-
     <div >
-    <Link to='login'>
-        <input type="submit" name="subject" value="LOGIN" class="button"/>
+    <Link to='/'>
+        <input type="submit" name="subject"
+         value="LOGIN" class="button"/>
     </Link>
     </div>
 
@@ -54,12 +97,8 @@ function Cadastro(){
     >
        <h1>teste</h1>
     </button>
-
-
-   
 </form>
-    
-       </div>
+</div>
     )
 }
 

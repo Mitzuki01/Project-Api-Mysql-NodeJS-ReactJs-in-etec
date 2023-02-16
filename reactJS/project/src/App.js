@@ -14,8 +14,7 @@ function App() {
       <ToastContainer />
       <BrowserRouter>
         <Routes>
-          <Route path='' element={<Login/>}/>
-          <Route path='/login' element={<Login/>}/>
+          <Route path='/' element={<Login/>}/>
           <Route path='/cadastro' element={<Cadastro/>}/>
         </Routes>
       </BrowserRouter>
